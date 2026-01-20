@@ -1,84 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CloudBet Loader</title>
 
-<!-- Google Font (curly / premium style) -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
-
 <style>
-/* Reset */
-* {
+html, body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  height: 100%;
 }
 
-/* Fullscreen loader */
 body {
-  background: #0b0b0b;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: radial-gradient(circle at top, #1f2a4a, #0b1022);
   overflow: hidden;
 }
 
-/* Loader container */
-.loader {
-  position: relative;
+#loader {
+  width: 420px;
+  height: 140px;
 }
 
-/* Outline text */
-.loader-text {
-  font-family: 'Playfair Display', serif;
-  font-size: 72px;
-  font-style: italic;
-  letter-spacing: 2px;
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.6);
-  position: relative;
-}
-
-/* Fill animation layer */
-.loader-text::after {
-  content: "CloudBet";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: white;
-  width: 0%;
-  overflow: hidden;
-  white-space: nowrap;
-  animation: fillText 2s linear infinite;
-}
-
-/* Fill animation */
-@keyframes fillText {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-/* Hide loader smoothly */
-.fade-out {
-  animation: fadeOut 0.6s forwards;
-}
-
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-/* Main content (hidden initially) */
-.main-content {
+#main {
   display: none;
   color: white;
   font-family: Arial, sans-serif;
@@ -89,41 +36,79 @@ body {
 
 <body>
 
-<div class="loader" id="loader">
-  <div class="loader-text"></div>
-</div>
+<!-- LOADER -->
+<svg id="loader" viewBox="0 0 600 200">
+  <defs>
+    <!-- Mask for fill animation -->
+    <mask id="revealMask">
+      <rect id="maskRect" x="0" y="0" width="0" height="200" fill="white"/>
+    </mask>
+  </defs>
 
-<div class="main-content" id="mainContent">
+  <!-- Outline text -->
+  <text
+    x="50%"
+    y="50%"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-size="96"
+    font-family="cursive"
+    fill="none"
+    stroke="white"
+    stroke-width="2"
+    opacity="0.6">
+    CloudBet
+  </text>
+
+  <!-- Filled text -->
+  <text
+    x="50%"
+    y="50%"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-size="96"
+    font-family="cursive"
+    fill="white"
+    mask="url(#revealMask)">
+    CloudBet
+  </text>
+</svg>
+
+<!-- MAIN CONTENT -->
+<div id="main">
   Welcome to CloudBet
 </div>
 
 <script>
 let cycles = 0;
 const maxCycles = 2;
-const loaderText = document.querySelector(".loader-text::after");
+const mask = document.getElementById("maskRect");
 
-/*
-  Since ::after cannot be directly selected,
-  we control cycles using timing instead.
-*/
+function animateFill() {
+  mask.setAttribute("width", "0");
 
-const interval = setInterval(() => {
+  mask.animate(
+    [{ width: "0" }, { width: "600" }],
+    {
+      duration: 2000,
+      easing: "linear",
+      fill: "forwards"
+    }
+  );
+
   cycles++;
 
-  if (cycles >= maxCycles) {
-    clearInterval(interval);
-
-    const loader = document.getElementById("loader");
-    const main = document.getElementById("mainContent");
-
-    loader.classList.add("fade-out");
-
+  if (cycles < maxCycles) {
+    setTimeout(animateFill, 2000);
+  } else {
     setTimeout(() => {
-      loader.style.display = "none";
-      main.style.display = "block";
-    }, 600);
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("main").style.display = "block";
+    }, 2000);
   }
-}, 2000);
+}
+
+animateFill();
 </script>
 
 </body>
