@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CloudBet</title>
 
-<!-- Script logo font (Rainbet-like) -->
+<!-- Script logo font -->
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
@@ -48,7 +48,7 @@ body {
 /* ===== MENU BUTTON ===== */
 .menu-btn {
   position: fixed;
-  top: 30px;            /* aligned with logo text */
+  top: 30px;
   left: 20px;
   width: 30px;
   height: 22px;
@@ -87,6 +87,48 @@ body {
   letter-spacing: 0.5px;
   z-index: 2000;
   user-select: none;
+}
+
+/* ===== WALLET BAR ===== */
+.wallet-bar {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-55%); /* slightly left from center */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 2000;
+  font-family: Arial, sans-serif;
+}
+
+.balance-box {
+  background: #11162c;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: white;
+  font-size: 15px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.wallet-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #2ecc71;
+  color: #0b1022;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.wallet-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: #0b1022;
 }
 
 /* ===== SIDEBAR ===== */
@@ -147,11 +189,24 @@ body {
 <!-- ===== TOP LOGO ===== -->
 <div class="top-brand">CloudBet</div>
 
+<!-- ===== WALLET BAR ===== -->
+<div class="wallet-bar">
+  <div class="balance-box">$0.00</div>
+
+  <div class="wallet-btn">
+    <!-- Custom wallet icon -->
+    <svg viewBox="0 0 24 24">
+      <path d="M3 7a3 3 0 0 1 3-3h12a2 2 0 0 1 2 2v1H6a3 3 0 0 0 0 6h14v3a2 2 0 0 1-2 2H6a3 3 0 0 1-3-3z"/>
+      <circle cx="17" cy="12" r="1.5"/>
+    </svg>
+    Wallet
+  </div>
+</div>
+
 <!-- ===== SIDEBAR ===== -->
 <div class="sidebar" id="sidebar">
 
   <a href="index.html" class="nav-item">
-    <!-- Crown icon -->
     <svg viewBox="0 0 24 24">
       <path d="M3 7l4 4 5-6 5 6 4-4v10H3z"/>
     </svg>
@@ -159,7 +214,6 @@ body {
   </a>
 
   <a href="favourites.html" class="nav-item">
-    <!-- Star icon -->
     <svg viewBox="0 0 24 24">
       <path d="M12 2l3 7h7l-5.5 4.5L18 22l-6-4-6 4 1.5-8.5L2 9h7z"/>
     </svg>
@@ -167,7 +221,6 @@ body {
   </a>
 
   <a href="recent-played.html" class="nav-item">
-    <!-- Clock icon -->
     <svg viewBox="0 0 24 24">
       <path d="M12 1a11 11 0 1 0 11 11A11 11 0 0 0 12 1zm1 11.4V6h-2v7l6 3.5 1-1.7z"/>
     </svg>
@@ -177,14 +230,14 @@ body {
 </div>
 
 <script>
-/* ===== LOADER ===== */
+/* Loader */
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("loader").style.display = "none";
   }, 2000);
 });
 
-/* ===== SIDEBAR TOGGLE ===== */
+/* Sidebar toggle */
 const menuBtn = document.getElementById("menuBtn");
 const sidebar = document.getElementById("sidebar");
 
