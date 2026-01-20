@@ -3,81 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CloudBet Loader</title>
+<title>CloudBet</title>
 
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
+/* Loader overlay */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-}
-
-body {
+  background: #0b1022;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #0b1022;
+  z-index: 9999;
+}
+
+/* Spinner */
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(255,255,255,0.2);
+  border-top: 6px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Spin animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Page content */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: white;
 }
 </style>
 </head>
 
 <body>
 
-<svg width="420" viewBox="0 0 800 250">
-  <defs>
-    <mask id="fillMask">
-      <rect id="maskRect" x="0" y="0" width="0" height="250" fill="white"/>
-    </mask>
-  </defs>
+<!-- LOADER -->
+<div id="loader">
+  <div class="spinner"></div>
+</div>
 
-  <!-- Outline text (always visible) -->
-  <text
-    x="50%"
-    y="55%"
-    text-anchor="middle"
-    dominant-baseline="middle"
-    font-size="130"
-    font-family="cursive"
-    fill="none"
-    stroke="white"
-    stroke-width="2"
-    opacity="0.5">
-    CloudBet
-  </text>
-
-  <!-- Filled text (masked) -->
-  <text
-    x="50%"
-    y="55%"
-    text-anchor="middle"
-    dominant-baseline="middle"
-    font-size="130"
-    font-family="cursive"
-    fill="white"
-    mask="url(#fillMask)">
-    CloudBet
-  </text>
-</svg>
+<!-- PAGE CONTENT -->
+<h1>Welcome to CloudBet</h1>
+<p>Your website content goes here.</p>
 
 <script>
-const mask = document.getElementById("maskRect");
-
-function runFill() {
-  mask.setAttribute("width", "0");
-
-  mask.animate(
-    [{ width: "0" }, { width: "800" }],
-    {
-      duration: 2000,
-      easing: "linear",
-      fill: "forwards"
-    }
-  );
-}
-
-// Repeat forever (Stake behavior)
-runFill();
-setInterval(runFill, 2000);
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+  }, 2000);
+});
 </script>
 
 </body>
