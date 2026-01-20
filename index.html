@@ -16,99 +16,68 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at top, #1f2a4a, #0b1022);
-  overflow: hidden;
-}
-
-#loader {
-  width: 420px;
-  height: 140px;
-}
-
-#main {
-  display: none;
-  color: white;
-  font-family: Arial, sans-serif;
-  font-size: 32px;
+  background: #0b1022;
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOADER -->
-<svg id="loader" viewBox="0 0 600 200">
+<svg width="420" viewBox="0 0 800 250">
   <defs>
-    <!-- Mask for fill animation -->
-    <mask id="revealMask">
-      <rect id="maskRect" x="0" y="0" width="0" height="200" fill="white"/>
+    <mask id="fillMask">
+      <rect id="maskRect" x="0" y="0" width="0" height="250" fill="white"/>
     </mask>
   </defs>
 
-  <!-- Outline text -->
+  <!-- Outline text (always visible) -->
   <text
     x="50%"
-    y="50%"
-    dominant-baseline="middle"
+    y="55%"
     text-anchor="middle"
-    font-size="96"
+    dominant-baseline="middle"
+    font-size="130"
     font-family="cursive"
     fill="none"
     stroke="white"
     stroke-width="2"
-    opacity="0.6">
+    opacity="0.5">
     CloudBet
   </text>
 
-  <!-- Filled text -->
+  <!-- Filled text (masked) -->
   <text
     x="50%"
-    y="50%"
-    dominant-baseline="middle"
+    y="55%"
     text-anchor="middle"
-    font-size="96"
+    dominant-baseline="middle"
+    font-size="130"
     font-family="cursive"
     fill="white"
-    mask="url(#revealMask)">
+    mask="url(#fillMask)">
     CloudBet
   </text>
 </svg>
 
-<!-- MAIN CONTENT -->
-<div id="main">
-  Welcome to CloudBet
-</div>
-
 <script>
-let cycles = 0;
-const maxCycles = 2;
 const mask = document.getElementById("maskRect");
 
-function animateFill() {
+function runFill() {
   mask.setAttribute("width", "0");
 
   mask.animate(
-    [{ width: "0" }, { width: "600" }],
+    [{ width: "0" }, { width: "800" }],
     {
       duration: 2000,
       easing: "linear",
       fill: "forwards"
     }
   );
-
-  cycles++;
-
-  if (cycles < maxCycles) {
-    setTimeout(animateFill, 2000);
-  } else {
-    setTimeout(() => {
-      document.getElementById("loader").style.display = "none";
-      document.getElementById("main").style.display = "block";
-    }, 2000);
-  }
 }
 
-animateFill();
+// Repeat forever (Stake behavior)
+runFill();
+setInterval(runFill, 2000);
 </script>
 
 </body>
