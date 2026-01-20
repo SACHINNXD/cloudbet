@@ -66,11 +66,9 @@ body {
 .menu-btn.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
-
 .menu-btn.active span:nth-child(2) {
   opacity: 0;
 }
-
 .menu-btn.active span:nth-child(3) {
   transform: rotate(-45deg) translate(6px, -6px);
 }
@@ -127,11 +125,11 @@ body {
   fill: #0b1022;
 }
 
-/* ===== ICON GROUP (RIGHT SIDE) ===== */
+/* ===== ICON GROUP (MOVED RIGHT) ===== */
 .icon-group {
   position: fixed;
   top: 18px;
-  left: calc(50% + 220px);
+  right: 40px; /* 🔥 pushed further right */
   display: flex;
   align-items: center;
   gap: 12px;
@@ -162,7 +160,7 @@ body {
   fill: white;
 }
 
-/* Chat box separate */
+/* Chat box */
 .chat-box {
   width: 40px;
   height: 40px;
@@ -277,15 +275,14 @@ body {
 
 <script>
 window.addEventListener("load", () => {
-  setTimeout(() => document.getElementById("loader").style.display = "none", 2000);
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+  }, 2000);
 });
 
 const menuBtn = document.getElementById("menuBtn");
-const sidebar = document.getElementById("sidebar");
-
-menuBtn?.addEventListener("click", () => {
+menuBtn.addEventListener("click", () => {
   menuBtn.classList.toggle("active");
-  sidebar.classList.toggle("active");
 });
 </script>
 
