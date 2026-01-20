@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CloudBet</title>
 
+<!-- Clean modern font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
 <style>
 /* Loader overlay */
 #loader {
@@ -20,7 +23,6 @@
   z-index: 9999;
 }
 
-/* Spinner */
 .spinner {
   width: 60px;
   height: 60px;
@@ -30,19 +32,32 @@
   animation: spin 1s linear infinite;
 }
 
-/* Spin animation */
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-/* Page content */
+/* Page styling */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
   background: #111;
   color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 20px 0 20px;
+}
+
+/* Logo text */
+.logo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  letter-spacing: 1px;
 }
 </style>
 </head>
@@ -54,9 +69,16 @@ body {
   <div class="spinner"></div>
 </div>
 
-<!-- PAGE CONTENT -->
-<h1>Welcome to CloudBet</h1>
-<p>Your website content goes here.</p>
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">CloudBet</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div style="padding-left: 20px; margin-top: 40px;">
+  <h1>Home</h1>
+  <p>Welcome to CloudBet.</p>
+</div>
 
 <script>
 window.addEventListener("load", () => {
