@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CloudBet</title>
 
+<!-- Curvy premium font -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+
 <style>
 * {
   margin: 0;
@@ -26,14 +29,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: 3000;
 }
 
 .spinner {
   width: 60px;
   height: 60px;
   border: 6px solid rgba(255,255,255,0.2);
-  border-top: 6px solid #fff;
+  border-top: 6px solid #ffffff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -50,7 +53,7 @@ body {
   width: 30px;
   height: 22px;
   cursor: pointer;
-  z-index: 1500;
+  z-index: 2000;
 }
 
 .menu-btn span {
@@ -73,6 +76,19 @@ body {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
+/* ===== TOP BRAND TEXT ===== */
+.top-brand {
+  position: fixed;
+  top: 18px;
+  left: 90px; /* clearly far from hamburger */
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-style: italic;
+  color: white;
+  letter-spacing: 1px;
+  z-index: 2000;
+}
+
 /* ===== SIDEBAR ===== */
 .sidebar {
   position: fixed;
@@ -83,7 +99,7 @@ body {
   background: #11162c;
   padding-top: 80px;
   transition: 0.3s;
-  z-index: 1400;
+  z-index: 1800;
 }
 
 .sidebar.active {
@@ -128,27 +144,30 @@ body {
   <span></span>
 </div>
 
+<!-- ===== TOP BRAND ===== -->
+<div class="top-brand">CloudBet</div>
+
 <!-- ===== SIDEBAR ===== -->
 <div class="sidebar" id="sidebar">
 
+  <!-- Home -->
   <a href="index.html" class="nav-item">
-    <!-- Crown -->
     <svg viewBox="0 0 24 24">
       <path d="M3 7l4 4 5-6 5 6 4-4v10H3z"/>
     </svg>
     Home
   </a>
 
+  <!-- Favourites -->
   <a href="favourites.html" class="nav-item">
-    <!-- Star -->
     <svg viewBox="0 0 24 24">
       <path d="M12 2l3 7h7l-5.5 4.5L18 22l-6-4-6 4 1.5-8.5L2 9h7z"/>
     </svg>
     Favourites
   </a>
 
+  <!-- Recent Played -->
   <a href="recent-played.html" class="nav-item">
-    <!-- Clock -->
     <svg viewBox="0 0 24 24">
       <path d="M12 1a11 11 0 1 0 11 11A11 11 0 0 0 12 1zm1 11.4V6h-2v7l6 3.5 1-1.7z"/>
     </svg>
@@ -158,14 +177,14 @@ body {
 </div>
 
 <script>
-/* Loader: always runs on page load */
+/* ===== LOADER LOGIC ===== */
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("loader").style.display = "none";
   }, 2000);
 });
 
-/* Sidebar toggle */
+/* ===== SIDEBAR TOGGLE ===== */
 const menuBtn = document.getElementById("menuBtn");
 const sidebar = document.getElementById("sidebar");
 
