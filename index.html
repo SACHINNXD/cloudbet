@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CloudBet Loader</title>
+
+<!-- Google Font (curly / premium style) -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+
+<style>
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fullscreen loader */
+body {
+  background: #0b0b0b;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Loader container */
+.loader {
+  position: relative;
+}
+
+/* Outline text */
+.loader-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 72px;
+  font-style: italic;
+  letter-spacing: 2px;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.6);
+  position: relative;
+}
+
+/* Fill animation layer */
+.loader-text::after {
+  content: "CloudBet";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: white;
+  width: 0%;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: fillText 2s linear infinite;
+}
+
+/* Fill animation */
+@keyframes fillText {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Hide loader smoothly */
+.fade-out {
+  animation: fadeOut 0.6s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Main content (hidden initially) */
+.main-content {
+  display: none;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 32px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="loader" id="loader">
+  <div class="loader-text"></div>
+</div>
+
+<div class="main-content" id="mainContent">
+  Welcome to CloudBet
+</div>
+
+<script>
+let cycles = 0;
+const maxCycles = 2;
+const loaderText = document.querySelector(".loader-text::after");
+
+/*
+  Since ::after cannot be directly selected,
+  we control cycles using timing instead.
+*/
+
+const interval = setInterval(() => {
+  cycles++;
+
+  if (cycles >= maxCycles) {
+    clearInterval(interval);
+
+    const loader = document.getElementById("loader");
+    const main = document.getElementById("mainContent");
+
+    loader.classList.add("fade-out");
+
+    setTimeout(() => {
+      loader.style.display = "none";
+      main.style.display = "block";
+    }, 600);
+  }
+}, 2000);
+</script>
+
+</body>
+</html>
