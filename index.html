@@ -1,86 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            background: linear-gradient(
-                180deg,
-                #0b0614 0%,
-                #120a22 40%,
-                #1a0f2e 100%
-            );
-            min-height: 300vh; /* scrollable page */
-            font-family: Arial, Helvetica, sans-serif;
-        }
+body {
+    background: linear-gradient(180deg, #0b0614, #120a22, #1a0f2e);
+    min-height: 300vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
 
-        /* Top coupon bar */
-        .coupon-bar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 55px;
-            background: #b9fbc0; /* light green */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            z-index: 1000;
-            font-weight: 600;
-            color: #0a1a12;
-        }
+/* Thin top bar */
+.coupon-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 36px;
+    background: #b9fbc0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    z-index: 1000;
+}
 
-        .gift {
-            font-size: 20px;
-        }
+/* Silver glowing text */
+.coupon-text {
+    color: #e6e6e6;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-shadow:
+        0 0 6px rgba(255,255,255,0.6),
+        0 0 12px rgba(200,200,200,0.4);
+}
 
-        /* Hidden coupon code */
-        .coupon-code {
-            background: #0a1a12;
-            color: transparent;
-            padding: 4px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            user-select: none;
-            transition: all 0.3s ease;
-        }
+/* Custom gift icon */
+.gift-icon {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: #e6e6e6;
+    stroke-width: 1.6;
+    filter: drop-shadow(0 0 4px rgba(255,255,255,0.6));
+}
 
-        /* Reveal on hover */
-        .coupon-code:hover {
-            color: #b9fbc0;
-        }
+/* Hidden code */
+.coupon-code {
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(0,0,0,0.4);
+    color: transparent;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.25s ease;
+}
 
-        /* Reveal on click */
-        .coupon-code.reveal {
-            color: #b9fbc0;
-        }
+/* Reveal on hover */
+.coupon-code:hover {
+    color: #e6e6e6;
+}
 
-        /* Push content down so bar doesn't overlap */
-        .spacer {
-            height: 55px;
-        }
-    </style>
+/* Reveal on click */
+.coupon-code.reveal {
+    color: #e6e6e6;
+}
+
+/* Spacer so bar doesn't overlap */
+.spacer {
+    height: 36px;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="coupon-bar">
-        <span class="gift">🎁</span>
-        <span>50% OFF coupon code</span>
-        <span class="coupon-code" onclick="this.classList.toggle('reveal')">
-            CODE
-        </span>
-    </div>
+<div class="coupon-bar">
+    <!-- Custom SVG Gift Icon -->
+    <svg class="gift-icon" viewBox="0 0 24 24">
+        <rect x="3" y="8" width="18" height="13" rx="2"/>
+        <line x1="12" y1="8" x2="12" y2="21"/>
+        <line x1="3" y1="13" x2="21" y2="13"/>
+        <path d="M12 8c-3-6-8-2-4 0M12 8c3-6 8-2 4 0"/>
+    </svg>
 
-    <div class="spacer"></div>
+    <span class="coupon-text">50% OFF coupon code</span>
+
+    <span class="coupon-code" onclick="this.classList.toggle('reveal')">
+        bd50
+    </span>
+</div>
+
+<div class="spacer"></div>
 
 </body>
 </html>
