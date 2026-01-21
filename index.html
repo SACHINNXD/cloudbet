@@ -27,9 +27,18 @@ body {
     background: #0f3d2e;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    padding: 0 12px;
     z-index: 1000;
+}
+
+/* Center content */
+.coupon-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 /* White text */
@@ -40,7 +49,7 @@ body {
     color: #ffffff;
 }
 
-/* Custom gift icon */
+/* Gift icon */
 .gift-icon {
     width: 18px;
     height: 18px;
@@ -64,6 +73,23 @@ body {
 
 .coupon-code.visible {
     color: #ffffff;
+}
+
+/* Login button */
+.login-btn {
+    margin-left: auto;
+    padding: 6px 14px;
+    background: #ffffff;
+    color: #0f3d2e;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.login-btn:hover {
+    background: #d7f5e8;
 }
 
 /* Spacer */
@@ -99,28 +125,28 @@ body {
 
 <div class="coupon-bar">
 
-    <!-- Custom SVG Gift Icon -->
-    <svg class="gift-icon" viewBox="0 0 24 24">
-        <rect x="3" y="8" width="18" height="13" rx="2"/>
-        <line x1="12" y1="8" x2="12" y2="21"/>
-        <line x1="3" y1="13" x2="21" y2="13"/>
-        <path d="M12 8c-3-6-8-2-4 0M12 8c3-6 8-2 4 0"/>
-    </svg>
+    <!-- Center coupon content -->
+    <div class="coupon-center">
+        <svg class="gift-icon" viewBox="0 0 24 24">
+            <rect x="3" y="8" width="18" height="13" rx="2"/>
+            <line x1="12" y1="8" x2="12" y2="21"/>
+            <line x1="3" y1="13" x2="21" y2="13"/>
+            <path d="M12 8c-3-6-8-2-4 0M12 8c3-6 8-2 4 0"/>
+        </svg>
 
-    <span class="coupon-text">50% OFF coupon code</span>
+        <span class="coupon-text">50% OFF coupon code</span>
+        <span id="coupon" class="coupon-code">bd50</span>
+    </div>
 
-    <span id="coupon" class="coupon-code">
-        bd50
-    </span>
+    <!-- Login button -->
+    <a href="loginpage.html" class="login-btn">Login</a>
 
 </div>
 
 <div class="spacer"></div>
 
 <!-- Toast popup -->
-<div id="toast" class="toast">
-    Copied to clipboard
-</div>
+<div id="toast" class="toast">Copied to clipboard</div>
 
 <script>
 const coupon = document.getElementById("coupon");
@@ -133,15 +159,13 @@ coupon.addEventListener("click", async () => {
     if (state === 0) {
         coupon.classList.add("visible");
         state = 1;
-    } 
-    else if (state === 1) {
+    } else if (state === 1) {
         try {
             await navigator.clipboard.writeText("bd50");
             showToast();
         } catch (e) {}
         state = 2;
-    } 
-    else {
+    } else {
         coupon.classList.remove("visible");
         state = 0;
     }
