@@ -6,14 +6,12 @@
     <title>Home</title>
 
     <style>
-        /* Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Page styling */
         body {
             background: linear-gradient(
                 180deg,
@@ -21,29 +19,68 @@
                 #120a22 40%,
                 #1a0f2e 100%
             );
-            min-height: 300vh; /* Makes page tall for scrolling */
+            min-height: 300vh; /* scrollable page */
             font-family: Arial, Helvetica, sans-serif;
         }
 
-        /* Optional subtle scroll indicator (can remove) */
-        .scroll-hint {
+        /* Top coupon bar */
+        .coupon-bar {
             position: fixed;
-            bottom: 20px;
+            top: 0;
             width: 100%;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.35);
-            font-size: 14px;
-            letter-spacing: 1px;
+            height: 55px;
+            background: #b9fbc0; /* light green */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            z-index: 1000;
+            font-weight: 600;
+            color: #0a1a12;
+        }
+
+        .gift {
+            font-size: 20px;
+        }
+
+        /* Hidden coupon code */
+        .coupon-code {
+            background: #0a1a12;
+            color: transparent;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Reveal on hover */
+        .coupon-code:hover {
+            color: #b9fbc0;
+        }
+
+        /* Reveal on click */
+        .coupon-code.reveal {
+            color: #b9fbc0;
+        }
+
+        /* Push content down so bar doesn't overlap */
+        .spacer {
+            height: 55px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Intentionally blank home page -->
-
-    <div class="scroll-hint">
-        SCROLL
+    <div class="coupon-bar">
+        <span class="gift">🎁</span>
+        <span>50% OFF coupon code</span>
+        <span class="coupon-code" onclick="this.classList.toggle('reveal')">
+            CODE
+        </span>
     </div>
+
+    <div class="spacer"></div>
 
 </body>
 </html>
