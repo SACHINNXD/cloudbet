@@ -125,11 +125,11 @@ body {
   fill: #0b1022;
 }
 
-/* ===== ICON GROUP (MOVED RIGHT) ===== */
+/* ===== ICON GROUP ===== */
 .icon-group {
   position: fixed;
   top: 18px;
-  right: 40px; /* 🔥 pushed further right */
+  right: 40px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -144,23 +144,7 @@ body {
   gap: 6px;
 }
 
-.icon-box {
-  width: 40px;
-  height: 40px;
-  background: #1a2142;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.icon-box svg {
-  width: 18px;
-  height: 18px;
-  fill: white;
-}
-
-/* Chat box */
+.icon-box,
 .chat-box {
   width: 40px;
   height: 40px;
@@ -171,13 +155,14 @@ body {
   justify-content: center;
 }
 
+.icon-box svg,
 .chat-box svg {
   width: 18px;
   height: 18px;
   fill: white;
 }
 
-/* ===== SIDEBAR ===== */
+/* ===== SIDEBAR (NAV BAR) ===== */
 .sidebar {
   position: fixed;
   top: 0;
@@ -186,7 +171,7 @@ body {
   height: 100%;
   background: #11162c;
   padding-top: 80px;
-  transition: 0.3s;
+  transition: left 0.3s ease;
   z-index: 1800;
 }
 
@@ -218,7 +203,7 @@ body {
 <!-- LOADER -->
 <div id="loader"><div class="spinner"></div></div>
 
-<!-- MENU -->
+<!-- MENU BUTTON -->
 <div class="menu-btn" id="menuBtn">
   <span></span><span></span><span></span>
 </div>
@@ -240,49 +225,36 @@ body {
 
 <!-- ICON GROUP -->
 <div class="icon-group">
-
   <div class="icon-box-wrapper">
-    <!-- Gift -->
-    <div class="icon-box">
-      <svg viewBox="0 0 24 24">
-        <path d="M20 7h-2.2a3 3 0 1 0-5.8 0H10a3 3 0 1 0-5.8 0H2v4h20zM2 11v9a2 2 0 0 0 2 2h6v-11zm8 0v11h6a2 2 0 0 0 2-2v-9z"/>
-      </svg>
-    </div>
-
-    <!-- Bell -->
-    <div class="icon-box">
-      <svg viewBox="0 0 24 24">
-        <path d="M12 2a5 5 0 0 0-5 5v3.5l-1.7 3.4A1 1 0 0 0 6.2 15h11.6a1 1 0 0 0 .9-1.5L17 10.5V7a5 5 0 0 0-5-5zm0 20a2.5 2.5 0 0 0 2.5-2.5h-5A2.5 2.5 0 0 0 12 22z"/>
-      </svg>
-    </div>
-
-    <!-- User -->
-    <div class="icon-box">
-      <svg viewBox="0 0 24 24">
-        <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5z"/>
-      </svg>
-    </div>
+    <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M20 7h-2.2a3 3 0 1 0-5.8 0H10a3 3 0 1 0-5.8 0H2v4h20z"/></svg></div>
+    <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 0-5 5v3.5l-1.7 3.4A1 1 0 0 0 6.2 15h11.6z"/></svg></div>
+    <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5zm0 2c-4.4 0-8 2.2-8 5v1h16z"/></svg></div>
   </div>
+  <div class="chat-box"><svg viewBox="0 0 24 24"><path d="M4 2h16v14H7l-5 4z"/></svg></div>
+</div>
 
-  <!-- Chat -->
-  <div class="chat-box">
-    <svg viewBox="0 0 24 24">
-      <path d="M4 2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7l-5 4V4a2 2 0 0 1 2-2z"/>
-    </svg>
-  </div>
-
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <a href="index.html" class="nav-item">Home</a>
+  <a href="favourites.html" class="nav-item">Favourites</a>
+  <a href="recent-played.html" class="nav-item">Recent Played</a>
 </div>
 
 <script>
+/* Loader */
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("loader").style.display = "none";
   }, 2000);
 });
 
+/* ✅ FIXED SIDEBAR TOGGLE */
 const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+
 menuBtn.addEventListener("click", () => {
   menuBtn.classList.toggle("active");
+  sidebar.classList.toggle("active");
 });
 </script>
 
