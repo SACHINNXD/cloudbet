@@ -201,19 +201,25 @@ function hideToast() {
   toast.classList.remove("show");
 }
 
-/* ERROR MAPPING */
+/* ERROR MAPPING (FINAL WORDING) */
 function mapError(code) {
+  if (isLogin) {
+    if (
+      code === "auth/user-not-found" ||
+      code === "auth/invalid-credential" ||
+      code === "auth/invalid-login-credentials"
+    ) {
+      return "Register first";
+    }
+
+    if (code === "auth/wrong-password") {
+      return "Incorrect password";
+    }
+  }
+
   switch (code) {
     case "auth/invalid-email":
       return "Invalid email address";
-
-    case "auth/user-not-found":
-      return "User not registered";
-
-    case "auth/wrong-password":
-    case "auth/invalid-credential":
-    case "auth/invalid-login-credentials":
-      return "Incorrect password";
 
     case "auth/email-already-in-use":
       return "Email already registered";
@@ -226,7 +232,7 @@ function mapError(code) {
   }
 }
 
-/* TOGGLE LOGIN / REGISTER */
+/* TOGGLE */
 switchMode.onclick = () => {
   isLogin = !isLogin;
   title.innerText = isLogin ? "Login" : "Register";
