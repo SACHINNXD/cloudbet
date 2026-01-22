@@ -159,7 +159,6 @@ h2 { text-align: center; margin-bottom: 20px; }
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
 <script>
-/* Firebase */
 const firebaseConfig = {
   apiKey: "AIzaSyCt_tmGHoV1DgEJcyjp6-xIJxAGtiNiUPc",
   authDomain: "loginorregistr-16968.firebaseapp.com",
@@ -184,31 +183,37 @@ const toast = document.getElementById("toast");
 const toastMsg = document.getElementById("toastMsg");
 
 let isLogin = true;
+let redirectOnClose = false;
 
-/* Toast */
-function showToast(msg, type) {
+/* TOAST */
+function showToast(msg, type, shouldRedirect = false) {
+  redirectOnClose = shouldRedirect;
   toast.className = `toast ${type} show`;
   toastMsg.innerText = msg;
-  setTimeout(() => window.location.href = "home.html", 3000);
+
+  if (shouldRedirect) {
+    setTimeout(() => {
+      window.location.href = "home.html";
+    }, 3000);
+  }
 }
 
 function hideToast() {
   toast.classList.remove("show");
 }
 
-/* Error map */
+/* ERROR MAP */
 function mapError(code) {
-  const errors = {
+  return {
     "auth/invalid-email": "Invalid email address",
     "auth/user-not-found": "User not registered",
     "auth/wrong-password": "Incorrect password",
     "auth/email-already-in-use": "Email already registered",
     "auth/weak-password": "Password too weak"
-  };
-  return errors[code] || "Something went wrong";
+  }[code] || "Something went wrong";
 }
 
-/* Toggle */
+/* TOGGLE */
 switchMode.onclick = () => {
   isLogin = !isLogin;
   title.innerText = isLogin ? "Login" : "Register";
@@ -217,28 +222,28 @@ switchMode.onclick = () => {
   switchMode.innerText = isLogin ? " Register" : " Login";
 };
 
-/* Email auth */
+/* EMAIL AUTH */
 emailBtn.onclick = async () => {
   try {
     if (isLogin) {
       await auth.signInWithEmailAndPassword(emailInput.value, passwordInput.value);
-      showToast("Login successful", "success");
+      showToast("Login successful", "success", true);
     } else {
       await auth.createUserWithEmailAndPassword(emailInput.value, passwordInput.value);
-      showToast("Account created", "success");
+      showToast("Account created", "success", true);
     }
   } catch (e) {
-    showToast(mapError(e.code), "error");
+    showToast(mapError(e.code), "error", false);
   }
 };
 
-/* Google auth */
+/* GOOGLE AUTH */
 googleBtn.onclick = async () => {
   try {
     await auth.signInWithPopup(provider);
-    showToast("Signed in with Google", "success");
+    showToast("Signed in with Google", "success", true);
   } catch {
-    showToast("Google sign-in failed", "error");
+    showToast("Google sign-in failed", "error", false);
   }
 };
 </script>
