@@ -1,127 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login / Register</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login / Register</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    * { box-sizing: border-box; }
+<style>
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-      background: radial-gradient(circle at top, #1f2937, #020617);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1f2937, #020617);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .container {
-      width: 100%;
-      max-width: 420px;
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(18px);
-      border-radius: 16px;
-      padding: 32px 28px;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.45);
-      color: #fff;
-    }
+.container {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+  color: #fff;
+}
 
-    .logo { text-align: center; font-size: 26px; font-weight: 700; }
-    .subtitle { text-align: center; font-size: 14px; color: #cbd5f5; margin-bottom: 28px; }
-    h2 { text-align: center; font-size: 20px; margin-bottom: 20px; }
+.logo { text-align: center; font-size: 26px; font-weight: 700; }
+.subtitle { text-align: center; font-size: 14px; color: #cbd5f5; margin-bottom: 28px; }
 
-    .field { margin-bottom: 14px; }
+h2 { text-align: center; margin-bottom: 20px; }
 
-    .field input {
-      width: 100%;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(0,0,0,0.35);
-      color: #fff;
-    }
+.field { margin-bottom: 14px; }
 
-    .btn {
-      width: 100%;
-      padding: 14px;
-      border-radius: 10px;
-      border: none;
-      background: linear-gradient(135deg, #6366f1, #4f46e5);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+.field input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+}
 
-    .divider {
-      display: flex;
-      align-items: center;
-      margin: 22px 0;
-      font-size: 12px;
-      color: #9ca3af;
-    }
+.btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-    .divider::before,
-    .divider::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: rgba(255,255,255,0.15);
-    }
+.google-btn {
+  width: 100%;
+  padding: 13px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  cursor: pointer;
+}
 
-    .divider span { margin: 0 10px; }
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 22px 0;
+  font-size: 12px;
+  color: #9ca3af;
+}
 
-    .google-btn {
-      width: 100%;
-      padding: 13px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      cursor: pointer;
-    }
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+}
 
-    .switch {
-      margin-top: 18px;
-      text-align: center;
-      font-size: 13px;
-      color: #c7d2fe;
-    }
+.divider span { margin: 0 10px; }
 
-    .switch span {
-      cursor: pointer;
-      color: #a5b4fc;
-      font-weight: 600;
-    }
+.switch {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
+  color: #c7d2fe;
+}
 
-    /* TOAST */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: 280px;
-      padding: 14px 16px;
-      border-radius: 10px;
-      display: flex;
-      justify-content: space-between;
-      color: #fff;
-      opacity: 0;
-      transition: 0.3s;
-      z-index: 9999;
-    }
+.switch span {
+  cursor: pointer;
+  color: #a5b4fc;
+  font-weight: 600;
+}
 
-    .toast.show { opacity: 1; }
-    .toast.error { background: #dc2626; }
-    .toast.success { background: #16a34a; }
-    .toast span { cursor: pointer; }
-  </style>
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 280px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.toast.show { opacity: 1; }
+.toast.error { background: #dc2626; }
+.toast.success { background: #16a34a; }
+.toast span { cursor: pointer; }
+</style>
 </head>
 
 <body>
@@ -161,77 +159,88 @@
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
 <script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyCt_tmGHoV1DgEJcyjp6-xIJxAGtiNiUPc",
-    authDomain: "loginorregistr-16968.firebaseapp.com",
-    projectId: "loginorregistr-16968",
-    appId: "1:709518228277:web:be1de8c898228aedc56a7c"
+/* Firebase */
+const firebaseConfig = {
+  apiKey: "AIzaSyCt_tmGHoV1DgEJcyjp6-xIJxAGtiNiUPc",
+  authDomain: "loginorregistr-16968.firebaseapp.com",
+  projectId: "loginorregistr-16968",
+  appId: "1:709518228277:web:be1de8c898228aedc56a7c"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const provider = new firebase.auth.GoogleAuthProvider();
+
+/* DOM */
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const emailBtn = document.getElementById("emailBtn");
+const googleBtn = document.getElementById("googleBtn");
+const switchMode = document.getElementById("switchMode");
+const switchText = document.getElementById("switchText");
+const title = document.getElementById("title");
+const toast = document.getElementById("toast");
+const toastMsg = document.getElementById("toastMsg");
+
+let isLogin = true;
+
+/* Toast */
+function showToast(msg, type) {
+  toast.className = `toast ${type} show`;
+  toastMsg.innerText = msg;
+  setTimeout(() => window.location.href = "home.html", 3000);
+}
+
+function hideToast() {
+  toast.classList.remove("show");
+}
+
+/* Error map */
+function mapError(code) {
+  const errors = {
+    "auth/invalid-email": "Invalid email address",
+    "auth/user-not-found": "User not registered",
+    "auth/wrong-password": "Incorrect password",
+    "auth/email-already-in-use": "Email already registered",
+    "auth/weak-password": "Password too weak"
   };
+  return errors[code] || "Something went wrong";
+}
 
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const provider = new firebase.auth.GoogleAuthProvider();
+/* Toggle */
+switchMode.onclick = () => {
+  isLogin = !isLogin;
+  title.innerText = isLogin ? "Login" : "Register";
+  emailBtn.innerText = isLogin ? "Login" : "Create Account";
+  switchText.innerText = isLogin ? "Don't have an account?" : "Already have an account?";
+  switchMode.innerText = isLogin ? " Register" : " Login";
+};
 
-  let isLogin = true;
-
-  const title = document.getElementById("title");
-  const emailBtn = document.getElementById("emailBtn");
-  const switchMode = document.getElementById("switchMode");
-  const switchText = document.getElementById("switchText");
-
-  const toast = document.getElementById("toast");
-  const toastMsg = document.getElementById("toastMsg");
-
-  function showToast(msg, type) {
-    toast.className = `toast ${type} show`;
-    toastMsg.innerText = msg;
-    setTimeout(() => window.location.href = "home.html", 3000);
-  }
-
-  function hideToast() {
-    toast.classList.remove("show");
-  }
-
-  function mapError(code) {
-    return {
-      "auth/invalid-email": "Invalid email address",
-      "auth/user-not-found": "User not registered",
-      "auth/wrong-password": "Incorrect password",
-      "auth/email-already-in-use": "Email already registered",
-      "auth/weak-password": "Password too weak"
-    }[code] || "Something went wrong";
-  }
-
-  switchMode.onclick = () => {
-    isLogin = !isLogin;
-    title.innerText = isLogin ? "Login" : "Register";
-    emailBtn.innerText = isLogin ? "Login" : "Create Account";
-    switchText.innerText = isLogin ? "Don't have an account?" : "Already have an account?";
-    switchMode.innerText = isLogin ? " Register" :: " Login";
-  };
-
-  emailBtn.onclick = async () => {
-    try {
-      if (isLogin) {
-        await auth.signInWithEmailAndPassword(email.value, password.value);
-        showToast("Login successful", "success");
-      } else {
-        await auth.createUserWithEmailAndPassword(email.value, password.value);
-        showToast("Account created", "success");
-      }
-    } catch (e) {
-      showToast(mapError(e.code), "error");
+/* Email auth */
+emailBtn.onclick = async () => {
+  try {
+    if (isLogin) {
+      await auth.signInWithEmailAndPassword(emailInput.value, passwordInput.value);
+      showToast("Login successful", "success");
+    } else {
+      await auth.createUserWithEmailAndPassword(emailInput.value, passwordInput.value);
+      showToast("Account created", "success");
     }
-  };
+  } catch (e) {
+    showToast(mapError(e.code), "error");
+  }
+};
 
-  googleBtn.onclick = async () => {
-    try {
-      await auth.signInWithPopup(provider);
-      showToast("Signed in with Google", "success");
-    } catch {
-      showToast("Google sign-in failed", "error");
-    }
-  };
+/* Google auth */
+googleBtn.onclick = async () => {
+  try {
+    await auth.signInWithPopup(provider);
+    showToast("Signed in with Google", "success");
+  } catch {
+    showToast("Google sign-in failed", "error");
+  }
+};
 </script>
 
 </body>
